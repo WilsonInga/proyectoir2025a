@@ -1,7 +1,0 @@
-ir_datasets
-numpy
-pandas
-nltk
-spacy
-scikit-learn
-flask
