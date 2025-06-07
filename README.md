@@ -98,8 +98,8 @@ pip install -r requirements.txt
 
 ## 👨‍💻 Autor
 
-Desarrollado por: **[Tu Nombre Aquí]**  
-Para más información, consulta `web_app_auto_queryid_preprocessed.py` o contacta a través de GitHub.
+Desarrollado por: Anthony Reinoso - Wilson Inga - Sergio Vite  
+
 
 ---
 
