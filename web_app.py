@@ -8,16 +8,16 @@ importlib.reload(evaluation)
 
 app = Flask(__name__)
 
-# Corpus
+# Carga del corpus de documentos preprocesados
 df = pd.read_csv("data/corpus_arguana_preprocesado.csv")
 df = df.dropna(subset=["Texto_preprocesado", "Texto_original"]).reset_index(drop=True)
 docs = df["Texto_preprocesado"].tolist()
 doc_ids = df["Doc_ID"].tolist()
 
-# Qrels
+# Carga de los Qrels
 df_qrels = pd.read_csv("data/qrels.tsv", sep="\t")
 
-# Queries preprocesadas
+# Carga y preprocesamiento de las consultas
 query_texts = pd.read_csv("data/queries_preprocessed.tsv", sep="\t")
 query_texts["text_proc"] = query_texts["text"].apply(preprocess_query)
 
@@ -38,7 +38,7 @@ HTML = """
 {% endif %}
 
 {% for i, score, doc in results %}
-  <p><b>{{ i }} - {{ score }}</b></p>
+  <p><b>Doc ID: {{ i }} - Rank: {{ score }}</b></p>
   <p>{{ doc }}</p>
   <hr>
 {% endfor %}
@@ -54,21 +54,25 @@ def search():
     precision = recall = map_score = 0.0
 
     if request.method == "POST":
+         # Se obtiene la consulta del formulario, método seleccionado y la consulta
         query = request.form["query"]
         method = request.form["method"]
         query_pre = preprocess_query(query)
 
+        # Se intenta encontrar el ID de la consulta preprocesada
         matched = query_texts[query_texts["text_proc"].str.contains(query_pre, na=False)]
         if not matched.empty:
             query_id = matched.iloc[0]["query_id"]
 
+         # Ejecuta la búsqueda según el método seleccionado
         if method == "bm25":
             ranked_indices, scores = bm25_search(query_pre, docs)
         else:
             ranked_indices, scores = tfidf_search(query_pre, docs)
+        
+        ranked_doc_ids = [doc_ids[i] for i in ranked_indices] # Se obtienen los IDs de documentos correspondientes a los índices rankeados
 
-        ranked_doc_ids = [doc_ids[i] for i in ranked_indices]
-
+        # Evalua la búsqueda si hay consulta preprocesada
         if query_pre:
             try:
                 print("Evaluate Iniciado")
@@ -80,6 +84,7 @@ def search():
             except Exception as e:
                 print("ERROR en evaluate:", e)
 
+    # Prepara los resultados para mostrar los top 10
         results = [(i, f"{scores[i]:.3f}", df['Texto_original'][i]) for i in ranked_indices[:10]]
 
     return render_template_string(

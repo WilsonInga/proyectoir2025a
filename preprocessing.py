@@ -48,3 +48,4 @@ def preprocess_query(text):
     lemmatized = [token.lemma_ for token in doc]
     return ' '.join(lemmatized)
 
+
