@@ -29,8 +29,8 @@ def preprocess_corpus(csv_path):
 def preprocess_queries_tsv(tsv_path, output_path="queries_preprocessed.tsv"):
     df = pd.read_csv(tsv_path, sep="\t")
     df["text_proc"] = df["text"].apply(preprocess)
-    df.to_csv(output_path, sep="\t", index=False)
-    print(f"Archivo guardado como {output_path}")
+    df.to_csv("data/queries_preprocessed.tsv", sep="\t", index=False)
+    # print(f"Archivo guardado")
     return df
 # Preprocesar archivo
 # preprocess_queries_tsv("data/queries.tsv")
