@@ -5,7 +5,7 @@ import pandas as pd
 dataset = ir_datasets.load("beir/arguana")
 
 # Generar qrels.tsv
-qrels = dataset.qrels_iter()
+qrels = dataset.qrels_iter() # Itera sobre los juicios de relevancia
 rows = []
 for qrel in qrels:
     rows.append([qrel.query_id, 0, qrel.doc_id, qrel.relevance])
@@ -15,7 +15,7 @@ df_qrels.to_csv("data/qrels.tsv", sep="\t", index=False)
 print("Archivo qrels.tsv guardado en la carpeta 'data/'")
 
 # Generar queries.tsv
-queries = dataset.queries_iter()
+queries = dataset.queries_iter()# Iterador sobre las consultas
 query_rows = []
 for query in queries:
     query_rows.append([query.query_id, query.text])
