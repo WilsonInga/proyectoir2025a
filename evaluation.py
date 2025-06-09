@@ -65,7 +65,7 @@ def evaluate(qrels_path, retrieved_ids, query_id=None, top_k=10, debug=False):
         # Aquí se asume que se está calculando el AP para una sola consulta,
         # aunque la variable se llama map_score.
         map_score = sum([(i + 1) / (rank + 1) for i, rank in enumerate(
-            [i for i, doc in enumerate(retrieved_at_k) if doc in relevant_relevant])]) / len(relevant_docs)
+            [i for i, doc in enumerate(retrieved_at_k) if doc in relevant_docs])]) / len(relevant_docs)
             # Nota: Hay un pequeño error aquí, debería ser `retrieved_at_k` en la segunda enumeración.
             # Corregido:
             # map_score = sum([(i + 1) / (rank + 1) for i, rank in enumerate(
