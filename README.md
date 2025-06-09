@@ -103,4 +103,9 @@ Desarrollado por: Anthony Reinoso - Wilson Inga - Sergio Vite
 
 ---
 
-¡Esperamos que este sistema te sea útil para explorar y experimentar con técnicas de recuperación de información clásicas!
+## 🔗 Repositorio del Proyecto
+
+Accede al video explicativo del proyecto desde el siguiente enlace:
+
+[🔗 Ver Repositorio Compartido (OneDrive)](https://epnecuador-my.sharepoint.com/:v:/g/personal/anthony_reinoso_epn_edu_ec/EZmLqM2V5adCmfUWllSGWzABlObYmOqoWJ1xrgojHgGlDA?e=7x5NUF&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D)
+
