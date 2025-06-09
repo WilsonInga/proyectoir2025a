@@ -49,4 +49,3 @@ def preprocess_query(text):
     return ' '.join(lemmatized)
 
 
-
