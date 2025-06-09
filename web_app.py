@@ -38,7 +38,7 @@ HTML = """
 {% endif %}
 
 {% for i, score, doc in results %}
-  <p><b>{{ i }} - {{ score }}</b></p>
+  <p><b>Doc ID: {{ i }} - Rank: {{ score }}</b></p>
   <p>{{ doc }}</p>
   <hr>
 {% endfor %}
@@ -69,8 +69,8 @@ def search():
             ranked_indices, scores = bm25_search(query_pre, docs)
         else:
             ranked_indices, scores = tfidf_search(query_pre, docs)
-         # Se obtienen los IDs de documentos correspondientes a los índices rankeados
-        ranked_doc_ids = [doc_ids[i] for i in ranked_indices]
+        
+        ranked_doc_ids = [doc_ids[i] for i in ranked_indices] # Se obtienen los IDs de documentos correspondientes a los índices rankeados
 
         # Evalua la búsqueda si hay consulta preprocesada
         if query_pre:
